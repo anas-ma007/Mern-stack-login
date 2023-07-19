@@ -1,38 +1,37 @@
-
 import axios from "axios";
 import { useState } from "react";
 import { FaSignOutAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { login } from "../features/auth/authSlice";
-
+import AdminHeader from "../components/AdminHeader";
 
 function AdminLogin() {
-    const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-    const navigate = useNavigate()
-    const onsubmit = (e) => {
-        e.preventDefault();
-        AdminLogin();
-    }
+  const navigate = useNavigate();
+  const onsubmit = (e) => {
+    e.preventDefault();
+    AdminLogin();
+  };
 
-    const AdminLogin = async () => {
-        const data = {
-          email,
-          password,
-        };
-        const response = await axios.post("/api/admin/login", data);
-        console.log(response.data, ":asdfghj");
-        if (response.data) {
-          localStorage.setItem("admin", JSON.stringify(response.data));
-          navigate("/admin");
-        }
-      };
+  const AdminLogin = async () => {
+    const data = {
+      email,
+      password,
+    };
+    const response = await axios.post("/api/admin/login", data);
+    console.log(response.data, ":asdfghj");
+    if (response.data) {
+      localStorage.setItem("admin", JSON.stringify(response.data));
+      navigate("/admin");
+    }
+  };
 
   return (
     <>
+      <AdminHeader />
+
       <section className="heading">
         <h1>
-            
           <FaSignOutAlt /> Admin Login
         </h1>
 
@@ -58,7 +57,7 @@ function AdminLogin() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            
+
             <div className="from-group">
               <button type="submit" className="btn btn-block">
                 Submit

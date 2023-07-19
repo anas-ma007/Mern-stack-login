@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));  // Parse URL-encoded request 
 
 app.use("/api/goals", require("./routes/goalRoutes"));
 app.use("/api/users", require("./routes/userRoutes"));
-app.use('/api/admin',adminRouter)
+app.use("/api/admin",adminRouter)
 app.use(errorHandler)
 
 app.listen(port, () => {
